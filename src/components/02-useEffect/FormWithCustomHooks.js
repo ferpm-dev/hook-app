@@ -1,18 +1,18 @@
 import React, { useState } from "react";
-
+import { useForm } from "../../hooks/useForm";
 import "./effects.css";
 
 export const FormWithCustomHooks = () => {
-  const [formState, setFormState] = useState({ name: "", email: "", password: "" });
-  const { name, email, password } = formState;
+  const [formValues, handleInputChange] = useForm({ name: "", email: "", password: "" });
+  const { name, email, password } = formValues;
 
-  
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(formValues)
+  }
 
-  const handleInputChange = ({ target }) => {
-    setFormState({ ...formState, [target.name]: target.value });
-  };
   return (
-    <>
+    <form onSubmit={handleSubmit}>
       <h1>FormWithCustomHooks</h1>
       <hr />
       <div className="form-group">
@@ -49,6 +49,7 @@ export const FormWithCustomHooks = () => {
           onChange={handleInputChange}
         />
       </div>
-    </>
+      <button type="submit" className="btn btn-primary mt-4">enviar</button>
+    </form>
   );
 };
