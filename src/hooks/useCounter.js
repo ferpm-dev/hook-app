@@ -16,6 +16,22 @@ export const useCounter = (initialState = 10) => {
   };
   return {
     counter,
+
+    const [state, setstate] = useState(initialState);
+
+  const increment = (factor = 2) => {
+    setstate(state + factor);
+  };
+
+  const decrement = (factor = 2) => {
+    setstate(state - factor);
+  };
+
+  const reset = () => {
+    setstate(initialState);
+  };
+  return {
+    state,
     increment,
     decrement,
     reset,
